@@ -1,78 +1,60 @@
-# Bottle-Spinner
+Bottle-Spinner
 
-A virtual Bottle Spinner designed to recreate the suspense and unpredictability of a physical bottle spin directly in the browser.
+A virtual bottle spinner designed to recreate the suspense and unpredictability of a physical bottle spin directly in the browser.
 
-Bottle-Spinner uses browser cryptographic randomness to determine each spin independently, followed by a physics-inspired animation designed to make the outcome feel organic rather than mechanically predictable.
+Features
+Cryptographically secure randomness
+Physics-based forward simulation
+Two-phase friction model
+Natural acceleration and deceleration
+50/50 spin direction
+No predetermined landing angle
+Five-spin no-repeat system
+Responsive desktop and mobile design
+Click or tap anywhere to spin
+No external libraries
+No server required
+Single HTML file
+Physics
 
-## Features
+The bottle's final angle is determined through forward physics simulation using randomly generated physical parameters rather than a predetermined target angle.
 
-- Cryptographically secure randomization
-- Independent 50/50 spin-direction selection
-- Physics-inspired rotational animation
-- Variable acceleration and deceleration
-- Natural wobble and settling
-- Five-spin rolling no-repeat system
-- Responsive desktop and mobile layout
-- Click or tap anywhere to spin
-- No external libraries
-- No server required
-- Entire application contained in a single HTML file
-- Bottle artwork embedded directly into the HTML
+The simulation uses:
 
-## Randomness
+Initial angular velocity (ω₀)
+Viscous friction (μV)
+Coulomb friction (μC)
 
-Bottle-Spinner uses the browser's `crypto.getRandomValues()` API as its primary source of randomness.
+The bottle begins with rotational energy and naturally loses that energy through a two-phase friction model:
 
-The visual animation does not determine the result.
+Viscous friction at high rotational speeds
+Coulomb friction as the bottle slows toward rest
 
-The outcome is generated first, and the animation subsequently produces a visual trajectory toward that predetermined outcome. This prevents the animation itself from secretly deciding where the bottle lands.
+The bottle is never told where it should land. It simply runs out of rotational energy and stops wherever the simulation takes it.
 
-The five-spin system intentionally prevents the landing angle from repeating within the previous five spins. This is a deliberate suspense feature rather than unrestricted physical randomness.
+Randomness
 
-## Privacy
+Each spin uses multiple independent sources of entropy:
 
-Bottle-Spinner does not require an account, backend, database, or external service to operate.
+2 × 64-byte CSPRNG blocks
+Environmental timing noise
+performance.now()
+requestAnimationFrame() timing
+Screen dimensions and device metrics
+Hardware concurrency
+Double SHA-256 hash mixing
+Independent hash regions for each physics parameter
 
-No personal information is required to use the spinner.
+The physics parameters are derived independently from the resulting hash material.
 
-## Deployment
+The spin direction is determined by a single cryptographically secure random bit, giving an even 50/50 clockwise or counter-clockwise selection under the CSPRNG model.
 
-Bottle-Spinner is designed to run as a static website.
+License
 
-The entire application can be deployed using GitHub Pages with:
+MIT License.
 
-    index.html
+Project
 
-No build process or package installation is required.
+Bottle-Spinner
 
-## Repository Structure
-
-    spinner/
-    ├── index.html
-    ├── README.md
-    ├── LICENSE
-    └── .gitignore
-
-## Browser Compatibility
-
-Bottle-Spinner is designed for modern browsers supporting:
-
-- JavaScript
-- `crypto.getRandomValues()`
-- `requestAnimationFrame()`
-- Pointer Events
-- CSS transforms
-
-It is intended to work across desktop, tablet, and mobile devices.
-
-## License
-
-The source code is released under the MIT License.
-
-Nuka Cola, Fallout, associated names, imagery, trademarks, and other intellectual property are the property of their respective owners. This project is not affiliated with or endorsed by Bethesda or any other rights holder.
-
-## Project
-
-**Bottle-Spinner**
-
-A small experiment in making a browser-based randomizer feel physical, suspenseful, and difficult to predict.
+A lightweight browser-based experiment combining cryptographic randomness and forward physics simulation to create a bottle spinner that does not select a predetermined landing position.
