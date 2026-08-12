@@ -21,7 +21,7 @@ Bottle-Spinner uses browser cryptographic randomness to determine each spin inde
 
 ## Randomness
 
-NCBS uses the browser's `crypto.getRandomValues()` API as its primary source of randomness.
+Bottle-Spinner uses the browser's `crypto.getRandomValues()` API as its primary source of randomness.
 
 The visual animation does not determine the result.
 
@@ -31,13 +31,13 @@ The five-spin system intentionally prevents the landing angle from repeating wit
 
 ## Privacy
 
-NCBS does not require an account, backend, database, or external service to operate.
+Bottle-Spinner does not require an account, backend, database, or external service to operate.
 
 No personal information is required to use the spinner.
 
 ## Deployment
 
-NCBS is designed to run as a static website.
+Bottle-Spinner is designed to run as a static website.
 
 The entire application can be deployed using GitHub Pages with:
 
